@@ -28,6 +28,7 @@
     "typescript": "^6.0.2"
   },
   "dependencies": {
-    "@types/node": "^25.5.2"
+    "@types/node": "^25.5.2",
+    "express": "^5.2.1"
   }
 }
