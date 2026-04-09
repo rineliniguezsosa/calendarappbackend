@@ -1,0 +1,23 @@
+{
+  "name": "calendarappbackend",
+  "version": "1.0.0",
+  "description": "Backend para la gestión del calendario",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rineliniguezsosa/calendarappbackend.git"
+  },
+  "keywords": [
+    "calendarappbackend",
+    "calendarapp"
+  ],
+  "author": "rinel iniguez sosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rineliniguezsosa/calendarappbackend/issues"
+  },
+  "homepage": "https://github.com/rineliniguezsosa/calendarappbackend#readme"
+}
