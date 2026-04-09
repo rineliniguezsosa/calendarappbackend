@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/rineliniguezsosa/calendarappbackend/issues"
   },
-  "homepage": "https://github.com/rineliniguezsosa/calendarappbackend#readme"
+  "homepage": "https://github.com/rineliniguezsosa/calendarappbackend#readme",
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.2"
+  }
 }
