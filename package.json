@@ -1,5 +1,4 @@
-{
-  "type":"module",
+{  
   "name": "calendarappbackend",
   "version": "1.0.0",
   "description": "Backend para la gestión del calendario",
