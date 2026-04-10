@@ -5,9 +5,7 @@ export const validaterrors = async(req:Request,resp:Response,next:NextFunction)=
     const error = validationResult(req)
 
     if(!error.isEmpty()){
-        return resp.status(400).json({
-            errors: error.array().map(err => err.msg)
-        })
+       return resp.status(400).json(error)
     }
 
     next()
