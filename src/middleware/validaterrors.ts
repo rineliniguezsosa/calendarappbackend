@@ -7,7 +7,7 @@ export const validaterrors = async(req:Request,resp:Response,next:NextFunction)=
     if(!error.isEmpty()){
        return resp.status(400).json({
             ok:false,
-            error
+            errors:error.mapped()
        })
     }
 
