@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export const createUser = async(req: Request, resp:Response) =>{
     const {name,email,password} = req.body;
-    resp.json({
+    resp.status(201).json({
         ok:true,
         msg:'registro',
         name,
@@ -11,9 +11,12 @@ export const createUser = async(req: Request, resp:Response) =>{
     })
 }
 export const loginUser = async(req: Request, resp:Response) =>{
+    const {email,password} = req.body;
     resp.json({
         ok:true,
-        msg:'login'
+        msg:'login',
+        email,
+        password
     })
 }
 export const checkToken = async(req: Request, resp:Response) =>{
