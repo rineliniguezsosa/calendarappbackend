@@ -1,9 +1,13 @@
 import { Request, Response } from 'express';
 
 export const createUser = async(req: Request, resp:Response) =>{
+    const {name,email,password} = req.body;
     resp.json({
         ok:true,
-        msg:'registro'
+        msg:'registro',
+        name,
+        email,
+        password
     })
 }
 export const loginUser = async(req: Request, resp:Response) =>{
