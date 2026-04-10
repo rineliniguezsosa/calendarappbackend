@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { checkToken, createUser, loginUser } from '../../controllers';
-import { createUserValidation } from '../../validators';
+import { createUserValidation,loginValidation } from '../../validators';
 
 export const authRoutes = Router();
 
 authRoutes.post('/new',createUserValidation,createUser)
-authRoutes.post('/',loginUser)
+authRoutes.post('/',loginValidation,loginUser)
 authRoutes.post('/renew',checkToken)
