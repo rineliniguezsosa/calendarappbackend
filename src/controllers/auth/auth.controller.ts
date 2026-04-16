@@ -3,6 +3,15 @@ import { usuarioModel } from '../../models';
 import bcrypt from 'bcryptjs';
 import { generateJwt } from '../../helpers';
 
+declare global {
+    namespace Express {
+        interface Request {
+            uid?: string;
+            name?: string;
+        }
+    }
+}
+
 export const createUser = async(req: Request, resp:Response) =>{
     const {password} = req.body;
     try {
@@ -72,8 +81,12 @@ export const loginUser = async(req: Request, resp:Response) =>{
     }
 }
 export const checkToken = async(req: Request, resp:Response) =>{
+    const { uid,name } = req;
+
+    //generar Jwt
+    const token = await generateJwt(uid as string,name as string);
     resp.json({
         ok:true,
-        msg:'checkToken'
+        token
     })
 }
