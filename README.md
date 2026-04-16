@@ -83,4 +83,4 @@ x-token: <tu_token>
 
 ## 👨‍💻 Autor
 
-Riniel Iñiguez Sosa
+Rinel Iñiguez Sosa
