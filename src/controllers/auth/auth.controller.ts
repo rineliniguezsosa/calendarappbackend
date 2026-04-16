@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { usuarioModel } from '../../models';
 import bcrypt from 'bcryptjs';
+import { generateJwt } from '../../helpers';
 
 export const createUser = async(req: Request, resp:Response) =>{
     const {password} = req.body;
@@ -12,11 +13,15 @@ export const createUser = async(req: Request, resp:Response) =>{
         usuario.password = bcrypt.hashSync(password,salt)
     
         await usuario.save();
+
+        //generar JWT
+        const token = await generateJwt(usuario.id,usuario.name);
     
         resp.status(201).json({
             ok:true,
             uid:usuario.id,
-            name:usuario.name
+            name:usuario.name,
+            token
         })
     } catch (error) {
         console.log('error in createUser: ',error);
@@ -48,10 +53,14 @@ export const loginUser = async(req: Request, resp:Response) =>{
                 msg:'El password es incorrecto!!',
             })
         }
+
+        const token = await generateJwt(usuario.id,usuario.name);
+
         resp.json({
             ok:true,
             uid:usuario.id,
-            name:usuario.name
+            name:usuario.name,
+            token
         })
     } catch (error) {
         console.log('error in createUser: ',error);
