@@ -1,5 +1,6 @@
 import { body } from 'express-validator'
 import { validaterrors } from '../middleware'
+import { userEmailExist } from '../helpers'
 
 
 export const createUserValidation = [
@@ -12,6 +13,7 @@ export const createUserValidation = [
          .trim()
          .toLowerCase()
          .notEmpty().withMessage('El campo email es requerido !!')
+         .custom(userEmailExist)
          .isEmail().withMessage('El campo debe de estar en un formato valido de email'),
     body('password')
          .trim()
