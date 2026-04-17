@@ -1,1 +1,1 @@
-export * from './validators'
+export * from './auth/auth.validators'
