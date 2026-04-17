@@ -1,6 +1,6 @@
 import { body } from 'express-validator'
-import { validaterrors } from '../middleware'
-import { userEmailExist } from '../helpers'
+import { validaterrors } from '../../middleware'
+import { userEmailExist } from '../../helpers'
 
 
 export const createUserValidation = [
