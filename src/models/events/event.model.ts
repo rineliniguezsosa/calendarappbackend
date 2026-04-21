@@ -7,6 +7,7 @@ const eventSchema = new Schema({
     },
     note:{
         type:String,
+        required:true
     },
     start:{
         type:Date,
@@ -20,6 +21,14 @@ const eventSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'usuario'
     }
+})
+
+eventSchema.method('toJSON', function(){
+    const { __v, _id, ...object} = this.toObject();
+     return {
+        ...object,
+        id: _id.toString(),
+    };
 })
 
 export const eventModel = model('event',eventSchema);
