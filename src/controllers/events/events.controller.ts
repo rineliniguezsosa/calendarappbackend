@@ -4,9 +4,10 @@ import mongoose from 'mongoose';
 
 export const getEvents = async(req:Request,resp:Response) =>{
     try {
+        const events = await eventModel.find().populate('user','name email -_id')
         resp.status(201).json({
             ok:true,
-            msg:''
+            events
         })
     } catch (error) {
         console.log(error);
