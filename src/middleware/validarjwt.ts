@@ -4,7 +4,7 @@ import { Request,Response,NextFunction } from 'express'
 declare global {
     namespace Express {
         interface Request {
-            id?: string;
+            uid?: string;
             name?: string;
         }
     }
@@ -20,8 +20,8 @@ export const validarJwt = (req: Request,resp : Response,next:NextFunction) =>{
     }
     try {
         const { uid, name } = jwt.verify(token as string,process.env.SECRET_JWT as string) as { uid: string; name: string }
-
-        req.id = uid;
+        
+        req.uid = uid;
         req.name = name;
 
     } catch (error) {
