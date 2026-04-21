@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 export const getEvents = async(req:Request,resp:Response) =>{
     try {
         const events = await eventModel.find().populate('user','name email -_id')
-        resp.status(201).json({
+        resp.status(200).json({
             ok:true,
             events
         })
@@ -66,7 +66,7 @@ export const updateEvents = async(req:Request,resp:Response) =>{
 
         const eventUpdated = await eventModel.findByIdAndUpdate(eventoId,newEvent,{ new:true });
 
-        resp.status(201).json({
+        resp.json({
             ok:true,
             event:eventUpdated
         })
@@ -80,10 +80,34 @@ export const updateEvents = async(req:Request,resp:Response) =>{
     }
 }
 export const deleteEvents = async(req:Request,resp:Response) =>{
+    const eventoId = req.params.id;
+    const uid = req.uid;
     try {
-        resp.status(201).json({
+         const event = await eventModel.findById(eventoId);
+
+        if(!event){
+            return resp.status(400).json({
+                ok:false,
+                msg:'Evento no existe por ese id'
+            })
+        }
+
+        if (event.user?.toString() !== uid) {
+            return resp.status(401).json({
+                ok:false,
+                msg:'No tiene privilegio de eliminar este evento'
+            })
+        }
+
+        const newEvent = {
+            ...req.body,
+            user:uid
+        }
+
+        const eventEliminated = await eventModel.findByIdAndDelete(eventoId);
+        resp.json({
             ok:true,
-            msg:''
+            event: eventEliminated
         })
     } catch (error) {
         console.log(error);
