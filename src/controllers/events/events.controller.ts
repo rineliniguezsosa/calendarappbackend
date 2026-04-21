@@ -40,10 +40,35 @@ export const createEvents = async(req:Request,resp:Response) =>{
     }
 }
 export const updateEvents = async(req:Request,resp:Response) =>{
+    const eventoId = req.params.id;
+    const uid = req.uid;
     try {
+        const event = await eventModel.findById(eventoId);
+
+        if(!event){
+            return resp.status(400).json({
+                ok:false,
+                msg:'Evento no existe por ese id'
+            })
+        }
+
+        if (event.user?.toString() !== uid) {
+            return resp.status(401).json({
+                ok:false,
+                msg:'No tiene privilegio de editar este evento'
+            })
+        }
+
+        const newEvent = {
+            ...req.body,
+            user:uid
+        }
+
+        const eventUpdated = await eventModel.findByIdAndUpdate(eventoId,newEvent,{ new:true });
+
         resp.status(201).json({
             ok:true,
-            msg:''
+            event:eventUpdated
         })
     } catch (error) {
         console.log(error);
