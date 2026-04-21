@@ -1,4 +1,6 @@
 import { Request,Response } from 'express';
+import { eventModel } from '../../models';
+import mongoose from 'mongoose';
 
 export const getEvents = async(req:Request,resp:Response) =>{
     try {
@@ -16,10 +18,16 @@ export const getEvents = async(req:Request,resp:Response) =>{
     }
 }
 export const createEvents = async(req:Request,resp:Response) =>{
+    const event = new eventModel(req.body);
     try {
+
+        event.user = new mongoose.Types.ObjectId(req.uid);
+
+        const eventsaved = await event.save();
+        
         resp.status(201).json({
             ok:true,
-            msg:''
+            event:eventsaved
         })
     } catch (error) {
         console.log(error);
