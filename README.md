@@ -79,6 +79,13 @@ x-token: <tu_token>
 * `POST /api/auth/` → Iniciar sesión
 * `GET /api/auth/renew` → Renovar token
 
+### Events
+
+* `POST /api/events/` → Crear eventos de calendario
+* `GET /api/events/` → Obtener los eventos de calendario
+* `PUT /api/events/:id` → Actualizar eventos de calendario
+* `DELETE /api/events/:id` → Eliminar eventos de calendario
+
 ---
 
 ## 👨‍💻 Autor
