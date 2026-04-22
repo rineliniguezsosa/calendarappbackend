@@ -3,8 +3,6 @@
 API REST para la gestión de eventos de calendario.
 Construida con **Node.js**, **TypeScript**, **Express** y **MongoDB Atlas**.
 
-**NOTA: (AUN EN DESARROLLO)**
-
 ---
 
 ## 🚀 Tecnologías utilizadas
